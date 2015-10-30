@@ -2,7 +2,7 @@ require 'uri'
 require 'json/add/regexp'
 require 'pact/logging'
 require 'pact/mock_service/client'
-require 'pact/consumer/interaction_builder'
+require 'pact/messages/consumer/interaction_builder'
 
 module Pact::Messages::Consumer
   class ContractBuilder
@@ -48,7 +48,7 @@ module Pact::Messages::Consumer
     end
 
     def handle_interaction_fully_defined interaction
-      mock_service_client.add_expected_interaction interaction #TODO: What will happen if duplicate added?
+      # mock_service_client.add_expected_interaction interaction #TODO: What will happen if duplicate added?
       self.interaction_builder = nil
     end
 

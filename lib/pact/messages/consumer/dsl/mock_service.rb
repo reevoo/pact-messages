@@ -10,7 +10,7 @@ module Pact::Messages::Consumer::DSL
 
     def initialize name, consumer_name, provider_name
       @name = name
-      @onsumer_name = consumer_name
+      @consumer_name = consumer_name
       @provider_name = provider_name
       @verify = true
       @pact_specification_version = nil
@@ -30,7 +30,7 @@ module Pact::Messages::Consumer::DSL
     private
 
     def validate
-      raise "Please provide a name for service #{provider_name}" unless name
+      raise "Please provide a name for service #{provider_name}" unless @name
     end
 
     def configure_consumer_contract_builder

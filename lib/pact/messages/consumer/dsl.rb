@@ -1,4 +1,4 @@
-require_relative 'message_consumer'
+require_relative 'dsl/message_consumer'
 
 module Pact::Messages::Consumer
   module DSL

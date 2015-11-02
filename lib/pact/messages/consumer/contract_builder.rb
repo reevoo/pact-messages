@@ -19,14 +19,16 @@ module Pact::Messages::Consumer
         pactfile_write_mode: attributes[:pactfile_write_mode].to_s,
         pact_dir:            attributes.fetch(:pact_dir)
       }
+      @mock_service_client = Pact::MockService::Client.new(attributes[:port])
+      @mock_service_base_url = "http://localhost:#{attributes[:port]}"
     end
 
     def given(provider_state)
       interaction_builder.given(provider_state)
     end
 
-    def upon_receiving(description)
-      interaction_builder.upon_receiving(description)
+    def provide(message)
+      interaction_builder.provide(message)
     end
 
     def verify example_description

@@ -6,17 +6,31 @@ module Pact::Messages::Consumer::DSL
   class MockService
     extend Pact::DSL
 
-    attr_accessor :verify, :provider_name, :consumer_name, :pact_specification_version
+    attr_accessor :port, :standalone, :verify, :provider_name, :consumer_name, :pact_specification_version
 
     def initialize name, consumer_name, provider_name
       @name = name
       @consumer_name = consumer_name
       @provider_name = provider_name
+      @port = nil
+      @standalone = false
       @verify = true
       @pact_specification_version = nil
     end
 
     dsl do
+      def port port
+        self.port = port
+      end
+
+      def standalone standalone
+        self.standalone = standalone
+      end
+
+      def verify verify
+        self.verify = verify
+      end
+
       def pact_specification_version pact_specification_version
         self.pact_specification_version = pact_specification_version
       end
@@ -24,13 +38,20 @@ module Pact::Messages::Consumer::DSL
 
     def finalize
       validate
+      register_mock_service
       configure_consumer_contract_builder
     end
 
     private
 
     def validate
-      raise "Please provide a name for service #{provider_name}" unless @name
+      raise "Please provide a port for service #{@name}" unless port
+    end
+
+    def register_mock_service
+      unless standalone
+        Pact::MockService::AppManager.instance.register_mock_service_for provider_name, "http://localhost:#{port}", mock_service_options
+      end
     end
 
     def configure_consumer_contract_builder
@@ -45,6 +66,7 @@ module Pact::Messages::Consumer::DSL
         :consumer_name => consumer_name,
         :provider_name => provider_name,
         :pactfile_write_mode => Pact.configuration.pactfile_write_mode,
+        :port => port,
         :pact_dir => Pact.configuration.pact_dir
       }
       Pact::Messages::Consumer::ContractBuilder.new consumer_contract_builder_fields

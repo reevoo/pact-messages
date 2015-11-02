@@ -10,6 +10,10 @@ module Pact
       @consumer_world = nil
     end
 
+    def self.logger
+      @logger ||= Logger.new(STDOUT)
+    end
+
     module Consumer
       class World
 

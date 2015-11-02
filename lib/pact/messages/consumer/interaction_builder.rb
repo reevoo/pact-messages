@@ -8,6 +8,7 @@ module Pact::Messages::Consumer
 
     def initialize &block
       @interaction = Pact::Messages::Consumer::Interaction.new
+      @interaction.request = Pact::Request::Expected.from_hash(method: 'MESSAGE', path: '/')
       @callback = block
     end
 
@@ -17,7 +18,7 @@ module Pact::Messages::Consumer
     end
 
     def provide(response)
-      interaction.response = Pact::Response.new(response)
+      interaction.response = Pact::Response.new(body: response)
       @callback.call interaction
       self
     end

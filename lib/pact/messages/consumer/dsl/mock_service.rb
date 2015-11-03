@@ -12,8 +12,6 @@ module Pact::Messages::Consumer::DSL
       @name = name
       @consumer_name = consumer_name
       @provider_name = provider_name
-      @port = nil
-      @standalone = false
       @verify = true
       @pact_specification_version = nil
     end
@@ -21,10 +19,6 @@ module Pact::Messages::Consumer::DSL
     dsl do
       def port port
         self.port = port
-      end
-
-      def standalone standalone
-        self.standalone = standalone
       end
 
       def verify verify
@@ -37,16 +31,10 @@ module Pact::Messages::Consumer::DSL
     end
 
     def finalize
-      validate
-      register_mock_service
       configure_consumer_contract_builder
     end
 
     private
-
-    def validate
-      raise "Please provide a port for service #{@name}" unless port
-    end
 
     def register_mock_service
       unless standalone
@@ -63,11 +51,10 @@ module Pact::Messages::Consumer::DSL
 
     def create_consumer_contract_builder
       consumer_contract_builder_fields = {
-        :consumer_name => consumer_name,
-        :provider_name => provider_name,
-        :pactfile_write_mode => Pact.configuration.pactfile_write_mode,
-        :port => port,
-        :pact_dir => Pact.configuration.pact_dir
+        consumer_name: consumer_name,
+        provider_name: provider_name,
+        pactfile_write_mode: Pact.configuration.pactfile_write_mode,
+        pact_dir: Pact.configuration.pact_dir
       }
       Pact::Messages::Consumer::ContractBuilder.new consumer_contract_builder_fields
     end

@@ -1,23 +1,25 @@
 require 'uri'
 require 'json/add/regexp'
 require 'pact/logging'
+require 'pact/consumer_contract'
 require 'pact/mock_service/client'
 require 'pact/messages/consumer/interaction_builder'
 require 'pact/consumer_contract/consumer_contract_writer'
 
 module Pact::Messages::Consumer
   class ContractBuilder
-
     include Pact::Logging
 
-    attr_reader :consumer_contract, :mock_service_base_url
+    attr_reader :consumer_contract, :mock_service_base_url, :consumer_name, :provider_name
 
     def initialize(attributes)
-      @interaction_builder       = nil
-      @interactions              = []
-      @consumer_contract_details = {
-        consumer:            { name: attributes[:consumer_name] },
-        provider:            { name: attributes[:provider_name] },
+      @consumer_name              = attributes[:consumer_name]
+      @provider_name              = attributes[:provider_name]
+      @interaction_builder        = nil
+      @interactions               = []
+      @consumer_contract_details  = {
+        consumer:            { name: @consumer_name },
+        provider:            { name: @provider_name },
         pactfile_write_mode: attributes[:pactfile_write_mode].to_s,
         pact_dir:            attributes.fetch(:pact_dir)
       }
@@ -36,13 +38,21 @@ module Pact::Messages::Consumer
     # end
 
     def log(msg)
-      Pact::Messages.logger.log(msg)
+      logger.log(msg)
     end
 
     def write_pact
       consumer_contract_params = @consumer_contract_details.merge(interactions: @interactions)
-      consumer_contract_writer = Pact::ConsumerContractWriter.new(consumer_contract_params, Pact::Messages.logger)
+      consumer_contract_writer = Pact::ConsumerContractWriter.new(consumer_contract_params, logger)
       consumer_contract_writer.write
+    end
+
+    def consumer_contract
+      @consumer_contract ||= Pact::ConsumerContract.new(
+        consumer: Pact::ServiceConsumer.new(name: @consumer_name),
+        provider: Pact::ServiceProvider.new(name: @provider_name),
+        interactions: @interactions
+      )
     end
 
     # def wait_for_interactions options = {}

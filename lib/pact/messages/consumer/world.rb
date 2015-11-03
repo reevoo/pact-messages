@@ -29,6 +29,13 @@ module Pact
           consumer_contract_builders << consumer_contract_builder
         end
 
+        def find_consumer_contract(provider_name, consumer_name)
+          builder = consumer_contract_builders.find do |builder|
+            builder.provider_name == provider_name && builder.consumer_name == consumer_name
+          end
+          builder.consumer_contract if builder
+        end
+
         def register_pact_example_ran
           @any_pact_examples_ran = true
         end

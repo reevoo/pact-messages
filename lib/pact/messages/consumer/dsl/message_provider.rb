@@ -15,7 +15,7 @@ module Pact::Messages::Consumer::DSL
 
     dsl do
       def mock_service name, &block
-        self.service = MockService.build(name, consumer_name, provider_name, &block)
+        self.service = MockService.build(name, consumer_name, provider_name, &block || proc {})
       end
     end
 

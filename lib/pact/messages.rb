@@ -12,5 +12,6 @@ end
 
 require 'pact/messages/consumer'
 require 'pact/messages/provider'
+require 'pact/messages/contract_repository'
 
 Pact::Messages.send(:extend, Pact::Messages::Consumer::DSL)

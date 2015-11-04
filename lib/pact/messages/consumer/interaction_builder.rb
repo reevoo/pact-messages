@@ -1,5 +1,4 @@
 require 'net/http'
-require 'pact/messages/consumer/interaction'
 
 module Pact::Messages::Consumer
   class InteractionBuilder

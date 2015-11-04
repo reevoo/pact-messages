@@ -1,6 +1,3 @@
-require 'pact/messages/consumer/contract_builder'
-require 'pact/messages/consumer/world'
-
 module Pact::Messages::Consumer::DSL
   class MockService
     extend Pact::DSL

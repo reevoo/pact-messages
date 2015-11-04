@@ -3,7 +3,6 @@ require 'json/add/regexp'
 require 'pact/logging'
 require 'pact/consumer_contract'
 require 'pact/mock_service/client'
-require 'pact/messages/consumer/interaction_builder'
 require 'pact/consumer_contract/consumer_contract_writer'
 
 module Pact::Messages::Consumer

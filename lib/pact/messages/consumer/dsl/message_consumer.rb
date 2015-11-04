@@ -1,9 +1,5 @@
-require 'pact/shared/dsl'
-require_relative 'message_provider'
-
 module Pact::Messages::Consumer::DSL
   class MessageConsumer
-
     extend Pact::DSL
 
     attr_accessor :consumer_name

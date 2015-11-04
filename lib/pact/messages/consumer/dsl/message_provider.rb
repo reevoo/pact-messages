@@ -1,6 +1,3 @@
-require 'pact/shared/dsl'
-require_relative 'mock_service'
-
 module Pact::Messages::Consumer::DSL
   class MessageProvider
     extend Pact::DSL

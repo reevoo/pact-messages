@@ -2,10 +2,15 @@ require 'pact'
 
 module Pact
   module Messages
+    module_function
+
+    def build_mock_service(mock_service_name, &block)
+      Pact::Messages::Consumer::MockServiceFactory.build(mock_service_name, &block)
+    end
   end
 end
 
 require 'pact/messages/consumer'
 require 'pact/messages/provider'
 
-Pact.send(:extend, Pact::Messages::Consumer::DSL)
+Pact::Messages.send(:extend, Pact::Messages::Consumer::DSL)

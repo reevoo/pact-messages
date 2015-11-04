@@ -1,7 +1,4 @@
-module Pact
-  module Messages
-    module Provider
-
-    end
+module Pact::Messages
+  module Provider
   end
 end

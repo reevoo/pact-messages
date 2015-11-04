@@ -33,9 +33,9 @@ module Pact::Messages::Consumer
       interaction_builder.provide(message)
     end
 
-    # def verify example_description
-    #   mock_service_client.verify example_description
-    # end
+    def verify example_description
+      true # TODO: find out how the verification works in original pact
+    end
 
     def log(msg)
       logger.log(msg)
@@ -54,12 +54,6 @@ module Pact::Messages::Consumer
         interactions: @interactions
       )
     end
-
-    # def wait_for_interactions options = {}
-    #   wait_max_seconds = options.fetch(:wait_max_seconds, 3)
-    #   poll_interval    = options.fetch(:poll_interval, 0.1)
-    #   mock_service_client.wait_for_interactions wait_max_seconds, poll_interval
-    # end
 
     def handle_interaction_fully_defined(interaction)
       @interactions << interaction

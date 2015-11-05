@@ -9,7 +9,7 @@ module Pact::Messages::Consumer
   class ContractBuilder
     include Pact::Logging
 
-    attr_reader :consumer_contract, :mock_service_base_url, :consumer_name, :provider_name
+    attr_reader :consumer_name, :provider_name
 
     def initialize(attributes)
       @consumer_name              = attributes[:consumer_name]
@@ -17,10 +17,11 @@ module Pact::Messages::Consumer
       @interaction_builder        = nil
       @interactions               = []
       @consumer_contract_details  = {
-        consumer:            { name: @consumer_name },
-        provider:            { name: @provider_name },
-        pactfile_write_mode: attributes[:pactfile_write_mode].to_s,
-        pact_dir:            attributes.fetch(:pact_dir)
+        consumer:                   { name: @consumer_name },
+        provider:                   { name: @provider_name },
+        pactfile_write_mode:        attributes[:pactfile_write_mode].to_s,
+        pact_dir:                   attributes.fetch(:pact_dir),
+        pact_specification_version: attributes[:pact_specification_version],
       }
     end
 

@@ -1,7 +1,6 @@
 require 'net/http'
 require 'uri'
 require 'pact'
-# require 'pact/messages'
 
 module Pact::Messages
   module ContractRepository

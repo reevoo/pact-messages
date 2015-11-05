@@ -13,10 +13,6 @@ module Pact::Messages::Consumer::DSL
     end
 
     dsl do
-      def port port
-        self.port = port
-      end
-
       def verify verify
         self.verify = verify
       end
@@ -40,7 +36,8 @@ module Pact::Messages::Consumer::DSL
         consumer_name: consumer_name,
         provider_name: provider_name,
         pactfile_write_mode: Pact.configuration.pactfile_write_mode,
-        pact_dir: Pact.configuration.pact_dir
+        pact_dir: Pact.configuration.pact_dir,
+        pact_specification_version: pact_specification_version,
       }
       Pact::Messages::Consumer::ContractBuilder.new consumer_contract_builder_fields
     end

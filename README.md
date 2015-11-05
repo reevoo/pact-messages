@@ -1,4 +1,5 @@
 # Pact::Messages
+[![Build Status](https://travis-ci.org/reevoo/pact-messages.svg?branch=master)](https://travis-ci.org/reevoo/pact-messages)
 
 Define a pact contract between non-HTTP asynchronous service consumers and providers, enabling "consumer driven contract" testing.
 

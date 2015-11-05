@@ -7,14 +7,14 @@ module Pact
     module ContractRepository
       module_function
 
-      def get_response(provider_name, consumer_name, provider_state = nil)
+      def get_message_contract(provider_name, consumer_name, provider_state = nil)
         contract = get_contract(provider_name, consumer_name)
         fail "Contract between #{provider_name} and #{consumer_name} not found" unless contract
         find_response_for_provider_state(contract.interactions, provider_state)
       end
 
-      def get_response_sample(provider_name, consumer_name, provider_state = nil)
-        Pact::Reification.from_term(get_response(provider_name, consumer_name, provider_state))
+      def get_message_sample(provider_name, consumer_name, provider_state = nil)
+        Pact::Reification.from_term(get_message_contract(provider_name, consumer_name, provider_state))
       end
 
       class << self

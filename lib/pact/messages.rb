@@ -12,12 +12,12 @@ module Pact
       Pact::Messages::Consumer::MockServiceFactory.build(mock_service_name, &block)
     end
 
-    def get_response(provider_name, consumer_name, provider_state = nil)
-      Pact::Messages::ContractRepository.get_response(provider_name, consumer_name, provider_state)
+    def get_message_contract(provider_name, consumer_name, provider_state = nil)
+      Pact::Messages::ContractRepository.get_message_contract(provider_name, consumer_name, provider_state)
     end
 
-    def get_response_sample(provider_name, consumer_name, provider_state = nil)
-      Pact::Messages::ContractRepository.get_response_sample(provider_name, consumer_name, provider_state)
+    def get_message_sample(provider_name, consumer_name, provider_state = nil)
+      Pact::Messages::ContractRepository.get_message_sample(provider_name, consumer_name, provider_state)
     end
   end
 end

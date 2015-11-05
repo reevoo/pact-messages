@@ -2,9 +2,6 @@ require 'pact/shared/dsl'
 
 module Pact::Messages::Consumer
   module DSL
-    def service_consumer(name, &block)
-      MessageConsumer.build(name, &block)
-    end
   end
 end
 

@@ -46,7 +46,6 @@ Or install it yourself as:
 
 ## Usage
 
-
 ### Define Pact contract
 
 ```ruby
@@ -58,9 +57,7 @@ require 'pact/messages'
 
 Pact::Messages.service_consumer 'Message Consumer' do
   has_pact_with 'Message Provider' do
-    mock_service 'message_provider_service' do
-      pact_specification_version '0.0.1'
-    end
+    mock_service 'message_provider_service'
   end
 end
 ```
@@ -104,75 +101,80 @@ Pact::Messages.build_mock_service(:message_provider_service) do |service|
 end
 ```
 
-### Rspec
 
-## Verify contract
-In case of using [Sneakers gem](https://github.com/jondot/sneakers) - RabbitMQ background processing framework for Ruby.
+### Verify contract on the Provider side
 
 ```ruby
   module MessageBuilder
-    def self.build
+    def self.build(subscribed)
       {
         'first_name' => 'William',
-        'last_name'  => 'Taylor,
-        'subscribed' => true,
+        'last_name'  => 'Taylor',
+        'subscribed' => subscribed,
       }
     end
   end
 end
 ```
 
+#### Rspec
+
 ```ruby
 describe MessageBuilder, pact: true do
-  let(:user_contract) do
-    Pact::Messages.get_message_spec('Message Provider', 'Message Consumer', 'User subscribed')
-  end
+  subject { described_class.build(subscribed_status) }
 
-  it 'matches the contract' do
-    message = described_class.build
-    diff = Pact::JsonDiffer.call(user_contract, message)
-    puts Pact::Matchers::UnixDiffFormatter.call(diff) if diff.any? # Print a pretty diff if we fail
-    expect(diff).to be_empty
+  describe ".build" do
+    context "subscribed" do
+      let(:subscribed_status) { true }
+      let(:user_contract) do
+        Pact::Messages.get_response('Message Provider', 'Message Consumer', 'User subscribed')
+      end
+
+      it 'matches the contract' do
+        diff = Pact::JsonDiffer.call(user_contract, subject)
+        puts Pact::Matchers::UnixDiffFormatter.call(diff) if diff.any? # Print a pretty diff if we fail
+        expect(diff).to be_empty
+      end
+    end
+
+    context "unsubscribed" do
+      let(:subscribed_status) { false }
+      let(:user_contract) do
+        Pact::Messages.get_response('Message Provider', 'Message Consumer', 'User unsubscribed')
+      end
+
+      it 'matches the contract' do
+        diff = Pact::JsonDiffer.call(user_contract, subject)
+        puts Pact::Matchers::UnixDiffFormatter.call(diff) if diff.any? # Print a pretty diff if we fail
+        expect(diff).to be_empty
+      end
+    end
+  end
+end
+
+```
+
+### Using Sample from the Contract on Consumer side
+
+```ruby
+module MessageProcessor
+  def self.full_name(message)
+    [message.fetch('first_name'), message.fetch('last_name')].join(' ')
   end
 end
 ```
 
-
-
-## Using Sample from the Contract
+#### Rspec
 
 ```ruby
-  class MessageProcessor
-    def initialize(user)
-      @user = user
-    end
-
-    def subscribed?
-      @user.fetch('subscribed')
-    end
-  end
-end
-```
-
-```ruby
-describe MyTestClass, pact: true do
-  describe 'user subscribed') do
-    let(:user) do
-      Pact::Messages.get_message('Message Provider', 'Message Consumer', 'User subscribed')
-    end
-
-    it '' do
-      expect(described_class.new(user)).to be_truthy
-    end
+describe MessageProcessor, pact: true do
+  let(:message) do
+    Pact::Messages.get_response_sample('Message Provider', 'Message Consumer', 'User subscribed')
   end
 
-  describe 'user unsubscribed') do
-    let(:user) do
-      Pact::Messages.get_message('Message Provider', 'Message Consumer', 'User unsubscribed')
-    end
-
-    it '' do
-      expect(described_class.new(user)).to be_falsey
+  describe '.full_name' do
+    it 'joins first name and last name' do
+      expect(described_class.full_name(message)).to eq('John Smith')
     end
   end
 end

@@ -70,6 +70,7 @@ module Pact::Messages::Consumer
         begin
           interaction_builder = InteractionBuilder.new do |interaction|
             self.handle_interaction_fully_defined(interaction)
+            self
           end
           interaction_builder
         end

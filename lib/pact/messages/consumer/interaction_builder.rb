@@ -19,7 +19,6 @@ module Pact::Messages::Consumer
     def provide(response)
       interaction.response = Pact::Response.new(body: response)
       @callback.call interaction
-      self
     end
 
   end

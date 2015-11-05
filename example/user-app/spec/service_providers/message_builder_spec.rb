@@ -5,8 +5,8 @@ module UserApp
   describe MessageBuilder, pact: true do
     subject { described_class.build(subscribed_status) }
 
-    describe ".build" do
-      context "subscribed" do
+    describe '.build' do
+      context 'subscribed' do
         let(:subscribed_status) { true }
         let(:user_contract) do
           Pact::Messages.get_response('Message Provider', 'Message Consumer', 'User subscribed')
@@ -19,7 +19,7 @@ module UserApp
         end
       end
 
-      context "unsubscribed" do
+      context 'unsubscribed' do
         let(:subscribed_status) { false }
         let(:user_contract) do
           Pact::Messages.get_response('Message Provider', 'Message Consumer', 'User unsubscribed')

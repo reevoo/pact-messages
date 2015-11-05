@@ -14,19 +14,19 @@ end
 Pact::Messages.build_mock_service(:message_provider_service) do |service|
   service.given('User subscribed')
     .provide(
-      {
+      
         'first_name' => like('John'),
         'last_name'  => like('Smith'),
         'subscribed' => true,
-      },
+      ,
     )
 
   service.given('User unsubscribed')
     .provide(
-      {
+      
         'first_name' => like('John'),
         'last_name'  => like('Smith'),
         'subscribed' => false,
-      },
+      ,
     )
 end

@@ -4,7 +4,7 @@ module UserApp
       {
         'first_name' => 'William',
         'last_name'  => 'Taylor',
-        'subscribed' => subscribed,
+        'subscribed' => subscribed
       }
     end
   end

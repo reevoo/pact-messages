@@ -1,8 +1,3 @@
-module Pact::Messages
-  module Consumer
-  end
-end
-
 require_relative 'consumer/contract_builder'
 require_relative 'consumer/interaction'
 require_relative 'consumer/interaction_builder'

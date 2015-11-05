@@ -15,17 +15,15 @@
       },
       "response": {
         "body": {
-          "first_name": "John",
-          "last_name": "Smith",
-          "subscribed": true
-        },
-        "matchingRules": {
-          "$.body.first_name": {
-            "match": "type"
+          "first_name": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "John"
           },
-          "$.body.last_name": {
-            "match": "type"
-          }
+          "last_name": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "Smith"
+          },
+          "subscribed": true
         }
       }
     },
@@ -38,22 +36,20 @@
       },
       "response": {
         "body": {
-          "first_name": "John",
-          "last_name": "Smith",
-          "subscribed": false
-        },
-        "matchingRules": {
-          "$.body.first_name": {
-            "match": "type"
+          "first_name": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "John"
           },
-          "$.body.last_name": {
-            "match": "type"
-          }
+          "last_name": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "Smith"
+          },
+          "subscribed": false
         }
       }
     }
   ],
   "metadata": {
-    "pactSpecificationVersion": "0.0.0"
+    "pactSpecificationVersion": "1.0.0"
   }
 }

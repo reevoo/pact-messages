@@ -1,0 +1,34 @@
+LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Enabled: false
+Documentation:
+  Enabled: false
+AndOr:
+  Enabled: false
+
+# Allow use of empty lines to visually group code into 'paragraphs'
+EmptyLines:
+  Enabled: false
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+Style/EmptyLinesAroundMethodBody:
+  Enabled: false
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+Style/ModuleFunction:
+  Enabled: false
+
+TrailingComma:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+  SupportedStyles:
+    - comma
+    - no_comma
+
+AllCops:
+  Exclude:
+    - !ruby/regexp /node_modules/
+    - !ruby/regexp /db\/schema\.rb/

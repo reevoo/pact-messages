@@ -9,7 +9,7 @@ describe 'Mock service definition' do
     Pact::Messages::Consumer::ContractBuilder.new(
       consumer_name: 'My Consumer',
       provider_name: 'My Provider',
-      pact_dir: pact_dir
+      pact_dir: pact_dir,
     )
   end
 
@@ -44,7 +44,7 @@ describe 'Mock service definition' do
   it 'generates a pact json file' do
     generated_file = File.join(pact_dir, 'my_consumer-my_provider.json')
     expected_file = File.join(Rake.application.original_dir, 'spec', 'fixture', 'my_consumer-my_provider.json')
-    expect(File.exists?(generated_file)).to eq(true)
+    expect(File.exist?(generated_file)).to eq(true)
     expect(FileUtils.compare_file(generated_file, expected_file)).to eq(true)
   end
 end

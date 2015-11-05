@@ -28,7 +28,7 @@ module Pact::Messages
     end
 
     def find_response_for_provider_state(interactions, state, options = {})
-      options.reverse_merge!(default_contract_options)
+      options = default_contract_options.merge(options)
       interaction = interactions.find { |i| i.provider_state == state }
       body = interaction.response[:body]
       options[:reificate] ? ::Pact::Reification.from_term(body) : body

@@ -1,0 +1,60 @@
+{
+  "consumer": {
+    "name": "My Consumer"
+  },
+  "provider": {
+    "name": "My Provider"
+  },
+  "interactions": [
+    {
+      "description": null,
+      "provider_state": "provider state 1",
+      "request": {
+        "method": "MESSAGE",
+        "path": ""
+      },
+      "response": {
+        "body": {
+          "foo": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "bar1"
+          }
+        }
+      }
+    },
+    {
+      "description": null,
+      "provider_state": "provider state 2",
+      "request": {
+        "method": "MESSAGE",
+        "path": ""
+      },
+      "response": {
+        "body": {
+          "foo": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "bar2"
+          }
+        }
+      }
+    },
+    {
+      "description": null,
+      "request": {
+        "method": "MESSAGE",
+        "path": ""
+      },
+      "response": {
+        "body": {
+          "foo": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "default bar"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "1.0.0"
+  }
+}

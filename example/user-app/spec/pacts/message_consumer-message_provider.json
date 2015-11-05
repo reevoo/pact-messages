@@ -1,0 +1,59 @@
+{
+  "consumer": {
+    "name": "Message Consumer"
+  },
+  "provider": {
+    "name": "Message Provider"
+  },
+  "interactions": [
+    {
+      "description": null,
+      "provider_state": "User subscribed",
+      "request": {
+        "method": "MESSAGE",
+        "path": ""
+      },
+      "response": {
+        "body": {
+          "first_name": "John",
+          "last_name": "Smith",
+          "subscribed": true
+        },
+        "matchingRules": {
+          "$.body.first_name": {
+            "match": "type"
+          },
+          "$.body.last_name": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": null,
+      "provider_state": "User unsubscribed",
+      "request": {
+        "method": "MESSAGE",
+        "path": ""
+      },
+      "response": {
+        "body": {
+          "first_name": "John",
+          "last_name": "Smith",
+          "subscribed": false
+        },
+        "matchingRules": {
+          "$.body.first_name": {
+            "match": "type"
+          },
+          "$.body.last_name": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "0.0.0"
+  }
+}

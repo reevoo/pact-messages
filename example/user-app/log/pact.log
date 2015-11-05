@@ -1,0 +1,3 @@
+# Logfile created on 2015-11-05 15:43:21 +0000 by logger.rb/47272
+I, [2015-11-05T15:43:21.302165 #91013]  INFO -- : Writing pact for Message Provider to /Users/alexmalkov/reevoo/pact-messages/example/user-app/spec/pacts/message_consumer-message_provider.json
+I, [2015-11-05T15:43:55.291312 #91081]  INFO -- : Writing pact for Message Provider to /Users/alexmalkov/reevoo/pact-messages/example/user-app/spec/pacts/message_consumer-message_provider.json

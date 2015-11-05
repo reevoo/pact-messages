@@ -1,4 +1,4 @@
-require_relative 'pact_helper'
+require_relative '../pact_helper'
 require 'user_app/message_builder'
 
 module UserApp
@@ -9,7 +9,7 @@ module UserApp
       context "subscribed" do
         let(:subscribed_status) { true }
         let(:user_contract) do
-          Pact::Messages::ContractRepository.get_contract('Message Provider', 'Message Consumer', 'User subscribed')
+          Pact::Messages.get_response('Message Provider', 'Message Consumer', 'User subscribed')
         end
 
         it 'matches the contract' do
@@ -22,7 +22,7 @@ module UserApp
       context "unsubscribed" do
         let(:subscribed_status) { false }
         let(:user_contract) do
-          Pact::Messages::ContractRepository.get_contract('Message Provider', 'Message Consumer', 'User unsubscribed')
+          Pact::Messages.get_response('Message Provider', 'Message Consumer', 'User unsubscribed')
         end
 
         it 'matches the contract' do

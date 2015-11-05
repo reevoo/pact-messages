@@ -1,14 +1,14 @@
 # Pact::Messages
 
 Define a pact contract between non-HTTP asynchronous service consumers and providers, enabling "consumer driven contract" testing.
-                                                           
+
 This is an extension for [Pact gem](https://github.com/realestate-com-au/pact "Pact") which covers HTTP scenario.
-                                                               
+
 This allows testing shape of your JSON messages on both sides of an integration point using fast unit tests.
 
-This gem is inspired by the concept of "Consumer driven contracts". See [this article](http://martinfowler.com/articles/consumerDrivenContracts.html) by Ian Robinson for more information. 
+This gem is inspired by the concept of "Consumer driven contracts". See [this article](http://martinfowler.com/articles/consumerDrivenContracts.html) by Ian Robinson for more information.
 
- 
+
 ## What is it good for?
 
 Pact is most valuable for designing and testing integrations where you (or your team/organisation/partner organisation) control the development of both the consumer and the provider, and the requirements of the consumer are going to be used to drive the features of the provider.
@@ -19,8 +19,8 @@ You can find this solution very useful for systems based on messaging platforms 
 ## How does it work?
 
 1. In the specs for the provider facing code in the consumer project, expectations are set up on a mock service provider.
-   
-2. When the specs are run, the mock service stores pact contracts in the Contract Repository and writes contract in to a "pact" file. 
+
+2. When the specs are run, the mock service stores pact contracts in the Contract Repository and writes contract in to a "pact" file.
 
 3. In specs you are able to get pact contract from Contract Repository and verify shape of you message against this contract.
 
@@ -50,7 +50,7 @@ Or install it yourself as:
 
 ```ruby
 # in /spec/service_providers/pact_helper.rb
-# or 
+# or
 # in /spec/support/pact_helper.rb
 
 require 'pact/messages'
@@ -77,7 +77,7 @@ Pact::Messages.build_mock_service(:message_provider_service) do |service|
         'subscribed' => like(true),
       },
     )
-    
+
   service.given('User unsubscribed')
     .provide(
       {
@@ -100,7 +100,7 @@ Pact::Messages.build_mock_service(:message_provider_service) do |service|
       'subscribed' => like(true),
     }
   )
-end 
+end
 ```
 
 ### Rspec
@@ -122,11 +122,11 @@ end
 ```
 
 ```ruby
-describe MessageBuilder, pact:true do
+describe MessageBuilder, pact: true do
   let(:user_contract) do
-    Pact::Messages::ContractRepository.get_contract('Message Provider', 'Message Consumer', 'User subscribed')
+    Pact::Messages.get_message_spec('Message Provider', 'Message Consumer', 'User subscribed')
   end
-    
+
   it 'matches the contract' do
     message = described_class.build
     diff = Pact::JsonDiffer.call(user_contract, message)
@@ -145,7 +145,7 @@ end
     def initialize(user)
       @user = user
     end
-    
+
     def subscribed?
       @user.fetch('subscribed')
     end
@@ -154,12 +154,12 @@ end
 ```
 
 ```ruby
-describe MyTestClass, pact:true do
+describe MyTestClass, pact: true do
   describe 'user subscribed') do
     let(:user) do
-      Pact::Messages::ContractRepository.get_contract('Message Provider', 'Message Consumer', 'User subscribed')
+      Pact::Messages.get_message('Message Provider', 'Message Consumer', 'User subscribed')
     end
-    
+
     it '' do
       expect(described_class.new(user)).to be_truthy
     end
@@ -167,9 +167,9 @@ describe MyTestClass, pact:true do
 
   describe 'user unsubscribed') do
     let(:user) do
-      Pact::Messages::ContractRepository.get_contract('Message Provider', 'Message Consumer', 'User unsubscribed')
+      Pact::Messages.get_message('Message Provider', 'Message Consumer', 'User unsubscribed')
     end
-    
+
     it '' do
       expect(described_class.new(user)).to be_falsey
     end
@@ -180,6 +180,3 @@ end
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
-
-

@@ -12,10 +12,8 @@ module Pact::Messages::Consumer
     attr_reader :consumer_name, :provider_name
 
     def initialize(attributes)
-      @consumer_name              = attributes[:consumer_name]
-      @provider_name              = attributes[:provider_name]
-      @interaction_builder        = nil
-      @interactions               = []
+      @consumer_name              = attributes.fetch(:consumer_name)
+      @provider_name              = attributes.fetch(:provider_name)
       @consumer_contract_details  = {
         consumer:                   { name: @consumer_name },
         provider:                   { name: @provider_name },
@@ -23,6 +21,8 @@ module Pact::Messages::Consumer
         pact_dir:                   attributes.fetch(:pact_dir),
         pact_specification_version: attributes[:pact_specification_version],
       }
+      @interaction_builder        = nil
+      @interactions               = []
     end
 
     def given(provider_state)

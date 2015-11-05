@@ -19,7 +19,6 @@ module Pact::Messages::Consumer
         provider:                   { name: @provider_name },
         pactfile_write_mode:        attributes[:pactfile_write_mode].to_s,
         pact_dir:                   attributes.fetch(:pact_dir),
-        pact_specification_version: attributes[:pact_specification_version],
       }
       @interaction_builder        = nil
       @interactions               = []

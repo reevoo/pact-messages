@@ -12,9 +12,7 @@ describe 'Consumer side configuration' do
       end
 
       has_pact_with 'My Other Service' do
-        mock_service :my_other_service do
-          pact_specification_version '1.2.3'
-        end
+        mock_service :my_other_service
       end
     end
   end

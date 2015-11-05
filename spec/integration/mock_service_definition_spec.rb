@@ -30,15 +30,15 @@ describe 'Mock service definition' do
 
   it 'provides way to get message specifications' do
     match_response = match(foo: instance_of(Pact::SomethingLike))
-    expect(Pact::Messages.get_message_spec('My Provider', 'My Consumer')).to match_response
-    expect(Pact::Messages.get_message_spec('My Provider', 'My Consumer', 'provider state 1')).to match_response
-    expect(Pact::Messages.get_message_spec('My Provider', 'My Consumer', 'provider state 2')).to match_response
+    expect(Pact::Messages.get_response('My Provider', 'My Consumer')).to match_response
+    expect(Pact::Messages.get_response('My Provider', 'My Consumer', 'provider state 1')).to match_response
+    expect(Pact::Messages.get_response('My Provider', 'My Consumer', 'provider state 2')).to match_response
   end
 
   it 'provides way to get messages' do
-    expect(Pact::Messages.get_message('My Provider', 'My Consumer')).to eq(foo: 'default bar')
-    expect(Pact::Messages.get_message('My Provider', 'My Consumer', 'provider state 1')).to eq(foo: 'bar1')
-    expect(Pact::Messages.get_message('My Provider', 'My Consumer', 'provider state 2')).to eq(foo: 'bar2')
+    expect(Pact::Messages.get_response_sample('My Provider', 'My Consumer')).to eq(foo: 'default bar')
+    expect(Pact::Messages.get_response_sample('My Provider', 'My Consumer', 'provider state 1')).to eq(foo: 'bar1')
+    expect(Pact::Messages.get_response_sample('My Provider', 'My Consumer', 'provider state 2')).to eq(foo: 'bar2')
   end
 
   it 'generates a pact json file' do

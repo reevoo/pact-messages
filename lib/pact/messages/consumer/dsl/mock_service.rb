@@ -2,23 +2,18 @@ module Pact::Messages::Consumer::DSL
   class MockService
     extend Pact::DSL
 
-    attr_accessor :verify, :provider_name, :consumer_name, :pact_specification_version
+    attr_accessor :verify, :provider_name, :consumer_name
 
     def initialize name, consumer_name, provider_name
       @name = name
       @consumer_name = consumer_name
       @provider_name = provider_name
       @verify = true
-      @pact_specification_version = nil
     end
 
     dsl do
       def verify verify
         self.verify = verify
-      end
-
-      def pact_specification_version pact_specification_version
-        self.pact_specification_version = pact_specification_version
       end
     end
 
@@ -37,7 +32,6 @@ module Pact::Messages::Consumer::DSL
         provider_name: provider_name,
         pactfile_write_mode: Pact.configuration.pactfile_write_mode,
         pact_dir: Pact.configuration.pact_dir,
-        pact_specification_version: pact_specification_version,
       }
       Pact::Messages::Consumer::ContractBuilder.new consumer_contract_builder_fields
     end

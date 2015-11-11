@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'pact-messages'
   spec.version       = Pact::Messages::VERSION
   spec.authors       = ['Alex Malkov', 'David Sevcik']
-  spec.email         = ['alex.malkov@reevoo.com', 'david.sevcik@reevoo.com']
+  spec.email         = ['alex.a.malkov@gmail.com', 'david.sevcik@reevoo.com']
 
   spec.summary       = 'Enables consumer driven contract testing for asynchronous message driven systems.'
   spec.description   = 'Enables consumer driven contract testing for asynchronous message driven systems.'
@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.10'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rspec', '~> 3.3'
+  spec.add_development_dependency 'pry', '~> 0.10'
+  spec.add_development_dependency 'rubocop', '~> 0.28'
 end

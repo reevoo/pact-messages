@@ -1,4 +1,6 @@
 require 'pact'
+require 'pact/messages/consumer'
+require 'pact/messages/message_finder'
 
 module Pact
   module Messages
@@ -13,14 +15,15 @@ module Pact
     end
 
     def get_message_contract(provider_name, consumer_name, provider_state = nil)
-      Pact::Messages::ContractRepository.get_message_contract(provider_name, consumer_name, provider_state)
+      Pact::Messages::MessageFinder.get_message_contract(provider_name, consumer_name, provider_state)
     end
 
     def get_message_sample(provider_name, consumer_name, provider_state = nil)
-      Pact::Messages::ContractRepository.get_message_sample(provider_name, consumer_name, provider_state)
+      Pact::Messages::MessageFinder.get_message_sample(provider_name, consumer_name, provider_state)
+    end
+
+    def pact_broker_url=(url)
+      Pact::Messages::MessageFinder.pact_broker_url = url
     end
   end
 end
-
-require 'pact/messages/consumer'
-require 'pact/messages/contract_repository'

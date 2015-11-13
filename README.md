@@ -62,6 +62,12 @@ Pact::Messages.service_consumer 'Message Consumer' do
 end
 ```
 
+To modify the default pact broker url (http://pact-broker) please set `Pact::Messages.pact_broker_url`:
+
+```ruby
+Pact::Messages.pact_broker_url = 'http://my-pact-broker'
+```
+
 
 ### Define Mock Service
 

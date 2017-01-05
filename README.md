@@ -74,6 +74,7 @@ Pact::Messages.pact_broker_url = 'http://my-pact-broker'
 ```ruby
 Pact::Messages.build_mock_service(:message_provider_service) do |service|
   service.given('User subscribed')
+    .description('a request for subscribed user')
     .provide(
       {
         'first_name' => like('John'),
@@ -94,6 +95,7 @@ end
 ```
 
 PS: '.given' is optional, if you have only one state, you don't need to specify '.given'
+    '.description' is optional
 
 ```ruby
 Pact::Messages.build_mock_service(:message_provider_service) do |service|

@@ -39,6 +39,22 @@
       }
     },
     {
+      "description": "description for 3",
+      "provider_state": "provider state 3",
+      "request": {
+        "method": "MESSAGE",
+        "path": ""
+      },
+      "response": {
+        "body": {
+          "foo": {
+            "json_class": "Pact::SomethingLike",
+            "contents": "bar3"
+          }
+        }
+      }
+    },
+    {
       "description": null,
       "request": {
         "method": "MESSAGE",

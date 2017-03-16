@@ -21,6 +21,11 @@ module Pact
           interaction.response = Pact::Response.new(body: response)
           @callback.call interaction
         end
+
+        def description(description)
+          interaction.description = description.nil? ? nil : description.to_s
+          self
+        end
       end
     end
   end

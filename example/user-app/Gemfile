@@ -6,4 +6,5 @@ group :development, :test do
   gem 'pry'
 end
 
+gem 'rack', '~>1.6'
 gem 'rake'

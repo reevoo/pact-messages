@@ -23,7 +23,7 @@ module Pact
         end
 
         def description(description)
-          interaction.description = description.nil? ? nil : description.to_s
+          interaction.description = description.nil? ? '' : description.to_s
           self
         end
       end

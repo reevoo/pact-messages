@@ -8,10 +8,10 @@
   "interactions": [
     {
       "description": null,
-      "provider_state": "provider state 1",
+      "providerState": "provider state 1",
       "request": {
         "method": "MESSAGE",
-        "path": ""
+        "path": "/"
       },
       "response": {
         "body": {
@@ -24,10 +24,10 @@
     },
     {
       "description": null,
-      "provider_state": "provider state 2",
+      "providerState": "provider state 2",
       "request": {
         "method": "MESSAGE",
-        "path": ""
+        "path": "/"
       },
       "response": {
         "body": {
@@ -40,10 +40,10 @@
     },
     {
       "description": "description for 3",
-      "provider_state": "provider state 3",
+      "providerState": "provider state 3",
       "request": {
         "method": "MESSAGE",
-        "path": ""
+        "path": "/"
       },
       "response": {
         "body": {
@@ -58,7 +58,7 @@
       "description": null,
       "request": {
         "method": "MESSAGE",
-        "path": ""
+        "path": "/"
       },
       "response": {
         "body": {
@@ -71,6 +71,8 @@
     }
   ],
   "metadata": {
-    "pactSpecificationVersion": "1.0.0"
+    "pactSpecification": {
+      "version": "1.0.0"
+    }
   }
 }

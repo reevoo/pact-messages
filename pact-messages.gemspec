@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "pact-messages"
-  spec.version       = "0.1.3"
+  spec.version       = "0.2.0"
   spec.authors       = ["Alex Malkov", "David Sevcik"]
   spec.email         = ["alex.a.malkov@gmail.com", "david.sevcik@reevoo.com"]
 

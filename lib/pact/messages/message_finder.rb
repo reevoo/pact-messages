@@ -1,20 +1,20 @@
-require 'net/http'
-require 'uri'
-require 'pact'
+require "net/http"
+require "uri"
+require "pact"
 
 module Pact
   module Messages
     module MessageFinder
-      @@pact_broker_url = 'http://pact-broker'
+      @pact_broker_url = "http://pact-broker"
 
       module_function
 
       def pact_broker_url
-        @@pact_broker_url
+        @pact_broker_url
       end
 
       def pact_broker_url=(url)
-        @@pact_broker_url = url
+        @pact_broker_url = url
       end
 
       def get_message_contract(provider_name, consumer_name, provider_state = nil, contract_uri = nil)

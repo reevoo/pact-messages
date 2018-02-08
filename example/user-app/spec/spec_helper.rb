@@ -1,5 +1,5 @@
-$LOAD_PATH << File.expand_path('../../lib', __FILE__)
+$LOAD_PATH << File.expand_path("../../lib", __FILE__)
 
-RSpec.configure do | config |
+RSpec.configure do |config|
   config.color = true
 end

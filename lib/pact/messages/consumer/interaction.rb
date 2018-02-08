@@ -1,4 +1,4 @@
-require 'pact/consumer_contract/interaction'
+require "pact/consumer_contract/interaction"
 
 module Pact
   module Messages

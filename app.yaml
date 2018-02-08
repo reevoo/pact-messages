@@ -1,0 +1,15 @@
+name: pact-messages
+
+image:
+  repository: quay.io/reevoo/pact-messages
+
+pipeline:
+  tests:
+    rspec:
+      script: rspec
+    reevoocop:
+      script: reevoocop
+    audit:
+      script: |
+        bundle exec bundle-audit check --update
+        bundle exec ruby-audit check

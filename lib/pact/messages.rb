@@ -1,6 +1,7 @@
-require 'pact'
-require 'pact/messages/consumer'
-require 'pact/messages/message_finder'
+require "pact"
+require "pact/messages/version"
+require "pact/messages/consumer"
+require "pact/messages/message_finder"
 
 module Pact
   module Messages

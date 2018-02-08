@@ -18,7 +18,7 @@ module Pact
         attr_reader :mock_services
 
         def initialize
-          @mock_services         = {}
+          @mock_services = {}
         end
 
         def register_mock_service(mock_service_name, contract_builder)

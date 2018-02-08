@@ -24,7 +24,7 @@ module Pact
           private
 
           def validate
-            fail 'Please provide a consumer name' unless consumer_name && !consumer_name.empty?
+            fail "Please provide a consumer name" unless consumer_name && !consumer_name.empty?
           end
         end
       end

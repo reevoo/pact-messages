@@ -1,4 +1,4 @@
-require 'net/http'
+require "net/http"
 
 module Pact
   module Messages
@@ -8,7 +8,7 @@ module Pact
 
         def initialize(&block)
           @interaction         = Pact::Messages::Consumer::Interaction.new
-          @interaction.request = Pact::Request::Expected.from_hash(method: 'MESSAGE', path: '/')
+          @interaction.request = Pact::Request::Expected.from_hash(method: "MESSAGE", path: "/")
           @callback            = block
         end
 
@@ -23,7 +23,7 @@ module Pact
         end
 
         def description(description)
-          interaction.description = description.nil? ? '' : description.to_s
+          interaction.description = description.nil? ? "" : description.to_s
           self
         end
       end

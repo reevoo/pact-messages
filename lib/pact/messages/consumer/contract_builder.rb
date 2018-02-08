@@ -1,9 +1,9 @@
-require 'uri'
-require 'json/add/regexp'
-require 'pact/logging'
-require 'pact/consumer_contract'
-require 'pact/mock_service/client'
-require 'pact/consumer_contract/consumer_contract_writer'
+require "uri"
+require "json/add/regexp"
+require "pact/logging"
+require "pact/consumer_contract"
+require "pact/mock_service/client"
+require "pact/consumer_contract/consumer_contract_writer"
 
 module Pact
   module Messages

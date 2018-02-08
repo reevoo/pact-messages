@@ -1,11 +1,8 @@
 # coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "pact/messages/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "pact-messages"
-  spec.version       = Pact::Messages::VERSION
+  spec.version       = "0.1.3"
   spec.authors       = ["Alex Malkov", "David Sevcik"]
   spec.email         = ["alex.a.malkov@gmail.com", "david.sevcik@reevoo.com"]
 
@@ -25,4 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "reevoocop", "~> 0.0.12"
   spec.add_development_dependency "ruby_audit", "~> 1.2"
+  spec.add_development_dependency "rspec_junit_formatter"
 end

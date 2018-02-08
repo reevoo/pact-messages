@@ -1,2 +1,4 @@
 --format documentation
 --color
+--format=RspecJunitFormatter
+-o tests.xml

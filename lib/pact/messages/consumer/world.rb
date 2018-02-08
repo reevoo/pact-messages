@@ -33,7 +33,7 @@ module Pact
           contract_builder = mock_services.values.find do |builder|
             builder.provider_name == provider_name && builder.consumer_name == consumer_name
           end
-          contract_builder.consumer_contract if contract_builder
+          contract_builder&.consumer_contract
         end
 
       end

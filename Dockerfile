@@ -1,6 +1,6 @@
 FROM quay.io/assemblyline/alpine:3.6 as dev
 
-ENV APP_NAME=lead_pli_gem \
+ENV APP_NAME=pact-messages \
     BUNDLE_SILENCE_ROOT_WARNING=1
 
 WORKDIR /app/

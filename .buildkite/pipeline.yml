@@ -1,0 +1,31 @@
+steps:
+
+  - label: ":docker: Build"
+    command: |
+      make publish
+
+  - label: ":bomb: Tests"
+    command: |
+      make test
+
+  - block: ":rocket:"
+
+  - label: ":helm: :arrow_right: :k8s: staging"
+    command: |
+      make deploy
+    plugins:
+      ssh://git@github.com/reevoo/konfiguration-buildkite-plugin.git#v0.0.2: ~
+    env:
+      K8S_CLUSTER: leyton-orbiter
+      K8S_NAMESPACE: staging
+
+  - block: ":rocket:"
+
+  - label: ":helm: :arrow_right: :k8s: production"
+    command: |
+      make deploy
+    plugins:
+      ssh://git@github.com/reevoo/konfiguration-buildkite-plugin.git#v0.0.2: ~
+    env:
+      K8S_CLUSTER: leyton-orbiter
+      K8S_NAMESPACE: production

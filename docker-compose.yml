@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+
+  app:
+    tty: true
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/app
+    command: ["cat"]

@@ -1,0 +1,5 @@
+steps:
+
+  - label: ":bomb: Tests"
+    command: |
+      make test
